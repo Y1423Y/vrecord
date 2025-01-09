@@ -1892,23 +1892,13 @@ _lookup_choice(){
             MIDDLEOPTIONS_ALL+=(-color_primaries bt470bg)
             MIDDLEOPTIONS_ALL+=(-color_trc bt709)
             MIDDLEOPTIONS_ALL+=(-colorspace bt470bg) ;;
-        "1080i 59.94")
+        "Hi59")
             STANDARD="Hi59"
             DECKLINK_FPS="30000/1001"
             if [[ "${VIDEO_CODEC_CHOICE}" = "h264" ]] ; then
-                MIDDLEOPTIONS_PRES+=(-x264opts tff)
+                MIDDLEOPTIONS+=(-x264opts tff)
             fi
-            RECORDINGFILTER+=",setparams=field_mode=${SIGNAL_INT_CHOICE:-auto}"
-            MIDDLEOPTIONS+=(-color_primaries bt709)
-            MIDDLEOPTIONS+=(-color_trc bt709)
-            MIDDLEOPTIONS+=(-colorspace bt709) ;;
-        "1080 24psf")
-            STANDARD="1080 24psf"
-            DECKLINK_FPS="24000/1000"
-            if [[ "${VIDEO_CODEC_CHOICE}" = "h264" ]] ; then
-                MIDDLEOPTIONS_PRES+=(-x264opts tff)
-            fi
-            RECORDINGFILTER+=",setparams=field_mode=${SIGNAL_INT_CHOICE:-auto}"
+            RECORDINGFILTER="setdar=16/9"
             MIDDLEOPTIONS+=(-color_primaries bt709)
             MIDDLEOPTIONS+=(-color_trc bt709)
             MIDDLEOPTIONS+=(-colorspace bt709) ;;
